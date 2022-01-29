@@ -25,6 +25,7 @@ public class ClienteServiceImpl {
 	
 	public Cliente getClient(int id) {
 		Client client = Client.create();
+		client.setReadTimeout(300);
 		String path = PATH_API + "/" + String.valueOf(id);
 		WebResource webResource = client.resource(path);
 		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
@@ -33,6 +34,7 @@ public class ClienteServiceImpl {
 	
 	public String saveClient(Cliente cliente) throws JsonProcessingException {
 		Client client = Client.create();
+		client.setReadTimeout(300);
 		WebResource webResource = client.resource(PATH_API);
 		ObjectMapper mapper = new ObjectMapper();
 		String clientJson = mapper.writeValueAsString(cliente);
@@ -45,6 +47,7 @@ public class ClienteServiceImpl {
 	
 	public String updateClient(int id, Cliente cliente) throws JsonProcessingException {
 		Client client = Client.create();
+		client.setReadTimeout(300);
 		String path = PATH_API + "/" + String.valueOf(id);
 		WebResource webResource = client.resource(path);
 		ObjectMapper mapper = new ObjectMapper();
@@ -58,6 +61,7 @@ public class ClienteServiceImpl {
 	
 	public String deleteClient(int id) {
 		Client client = Client.create();
+		client.setReadTimeout(300);
 		String path = PATH_API + "/" + String.valueOf(id);
 		WebResource webResource = client.resource(path);
 		ClientResponse response = webResource.accept(MediaType.TEXT_PLAIN).delete(ClientResponse.class);
